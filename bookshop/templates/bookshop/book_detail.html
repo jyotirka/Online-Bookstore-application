@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }} - The Book Haven{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Book Image -->
+        <div class="col-md-4">
+            {% if book.cover_image %}
+                <img src="{{ book.cover_image.url }}" class="img-fluid rounded shadow" alt="{{ book.title }}" style="width: 100%; max-height: 500px; object-fit: cover;">
+            {% else %}
+                <div class="bg-light rounded shadow d-flex align-items-center justify-content-center" style="height: 500px;">
+                    <div class="text-center">
+                        <i class="fas fa-book fa-4x text-muted mb-3"></i>
+                        <p class="text-muted">No Image Available</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Book Details -->
+        <div class="col-md-8">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h1 class="card-title mb-3">{{ book.title }}</h1>
+                    <h4 class="text-muted mb-4">by {{ book.author }}</h4>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h2 class="text-success">₹{{ book.price }}</h2>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-2">
+                                <strong>Stock:</strong> 
+                                {% if book.stock > 0 %}
+                                    <span class="text-success">
+                                        <i class="fas fa-check-circle me-1"></i>{{ book.stock }} available
+                                    </span>
+                                {% else %}
+                                    <span class="text-danger">
+                                        <i class="fas fa-times-circle me-1"></i>Out of Stock
+                                    </span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5>Description</h5>
+                        <p class="text-muted">{{ book.description }}</p>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            {% if user.is_authenticated %}
+                                {% if book.stock > 0 %}
+                                    <a href="{% url 'add_to_cart' book.id %}" class="btn btn-success btn-lg me-3">
+                                        <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                    </a>
+                                {% else %}
+                                    <button class="btn btn-secondary btn-lg me-3" disabled>
+                                        <i class="fas fa-times me-2"></i>Out of Stock
+                                    </button>
+                                {% endif %}
+                                
+                                {% if in_wishlist %}
+                                    <a href="{% url 'remove_from_wishlist' book.id %}" class="btn btn-outline-danger btn-lg">
+                                        <i class="fas fa-heart-broken me-2"></i>Remove from Wishlist
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'add_to_wishlist' book.id %}" class="btn btn-outline-danger btn-lg">
+                                        <i class="fas fa-heart me-2"></i>Add to Wishlist
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Login to Purchase
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Books
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional Information -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Book Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Title:</strong></td>
+                                    <td>{{ book.title }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Author:</strong></td>
+                                    <td>{{ book.author }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Price:</strong></td>
+                                    <td class="text-success"><strong>₹{{ book.price }}</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Availability:</strong></td>
+                                    <td>
+                                        {% if book.stock > 0 %}
+                                            <span class="badge bg-success">In Stock ({{ book.stock }})</span>
+                                        {% else %}
+                                            <span class="badge bg-danger">Out of Stock</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Book ID:</strong></td>
+                                    <td>#{{ book.id }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

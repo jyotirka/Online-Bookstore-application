@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}The Book Haven{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/beautiful-theme.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply serif font to entire website */
+        body, html {
+            font-family: 'Crimson Text', serif !important;
+        }
+
+        /* Special styling for the bookstore name */
+        .navbar-brand {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 1.8rem !important;
+            font-weight: 600 !important;
+        }
+
+        /* Ensure all text elements use serif */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Crimson Text', serif !important;
+        }
+
+        p, span, div, a, button, input, textarea, select {
+            font-family: 'Crimson Text', serif !important;
+        }
+
+        .card-title, .card-text {
+            font-family: 'Crimson Text', serif !important;
+        }
+
+        .btn {
+            font-family: 'Crimson Text', serif !important;
+        }
+
+        .form-control {
+            font-family: 'Crimson Text', serif !important;
+        }
+
+        .nav-link {
+            font-family: 'Crimson Text', serif !important;
+        }
+
+        /* Distinct Book Cards */
+        .book-card {
+            border: 3px solid #d1d5db !important;
+            border-radius: 15px !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease !important;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%) !important;
+            overflow: hidden !important;
+            position: relative !important;
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #28a745, #ffc107, #dc3545);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px) !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+            border-color: #007bff !important;
+        }
+
+        .book-card:hover::before {
+            opacity: 1;
+        }
+
+        .book-card .card-img-top {
+            border-radius: 15px 15px 0 0 !important;
+            transition: transform 0.3s ease !important;
+        }
+
+        .book-card:hover .card-img-top {
+            transform: scale(1.02) !important;
+        }
+
+        .book-card .card-body {
+            padding: 1.5rem !important;
+            background: white !important;
+        }
+
+        .book-card .card-title {
+            color: #2c3e50 !important;
+            font-weight: 600 !important;
+            font-size: 1.2rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .book-card .card-text {
+            color: #6c757d !important;
+            line-height: 1.6 !important;
+        }
+
+        .book-price {
+            font-size: 1.4rem !important;
+            font-weight: 700 !important;
+            color: #28a745 !important;
+        }
+
+        .stock-info {
+            background: #e8f5e8 !important;
+            padding: 0.3rem 0.8rem !important;
+            border-radius: 20px !important;
+            font-size: 0.85rem !important;
+            color: #155724 !important;
+            display: inline-block !important;
+        }
+
+        .book-card .btn {
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .book-card .btn:hover {
+            transform: translateY(-2px) !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- Left corner - Bookstore name -->
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/favicon.png' %}" alt="Favicon" width="32" height="32" class="me-2">
+                The Book Haven
+            </a>
+
+            <!-- Right corner - Navigation buttons -->
+            <div class="navbar-nav ms-auto d-flex flex-row">
+                <a class="nav-link me-3" href="{% url 'home' %}">Home</a>
+                {% if user.is_authenticated %}
+                    <a class="nav-link me-3" href="{% url 'view_cart' %}">Cart</a>
+                    <a class="nav-link me-3" href="{% url 'user_profile' %}">Profile</a>
+                    {% if user.is_superuser %}
+                        <a class="nav-link me-3" href="{% url 'admin_orders' %}">Admin Orders</a>
+                    {% endif %}
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-link me-3" href="{% url 'register' %}">Register</a>
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'js/bootstrap-replacement.js' %}"></script>
+    <script src="{% static 'js/form-validation-fixed.js' %}"></script>
+    <script src="{% static 'js/spa-fixed.js' %}"></script>
+    <script src="{% static 'js/dynamic-search.js' %}"></script>
+    <script src="{% static 'js/cart-controls.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
