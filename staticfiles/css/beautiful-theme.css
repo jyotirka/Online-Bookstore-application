@@ -1,0 +1,352 @@
+/* Beautiful theme for The Book Haven */
+
+/* Enhanced color scheme */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --light-bg: #f8f9fa;
+    --dark-bg: #2c3e50;
+    --text-dark: #2c3e50;
+    --text-light: #7f8c8d;
+    --border-color: #e9ecef;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced navbar */
+.navbar {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #34495e 100%) !important;
+    box-shadow: var(--shadow);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    background: linear-gradient(45deg, #fff, #ecf0f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-link {
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Beautiful hero section */
+.hero-section {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: white;
+    padding: 3rem 0;
+    margin: -1.5rem -15px 2rem -15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+/* Enhanced search bar */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.input-group {
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: white;
+}
+
+.form-control {
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    background: transparent;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: none;
+}
+
+.btn-search {
+    background: var(--secondary-color);
+    border: none;
+    padding: 1rem 2rem;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-search:hover {
+    background: var(--primary-color);
+    transform: translateX(-2px);
+}
+
+/* Beautiful book cards */
+.book-card {
+    border: none !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    background: white !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+    position: relative !important;
+}
+
+.book-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--success-color), var(--warning-color), var(--accent-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-15px) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
+}
+
+.book-card:hover::before {
+    opacity: 1;
+}
+
+.card-img-top {
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.book-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 1.5rem !important;
+}
+
+.card-title {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: var(--text-dark) !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.3 !important;
+}
+
+.card-text {
+    color: var(--text-light) !important;
+    line-height: 1.6 !important;
+}
+
+.book-price {
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    color: var(--success-color) !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1) !important;
+}
+
+.stock-info {
+    background: linear-gradient(45deg, #e8f5e8, #d4edda) !important;
+    border: 1px solid var(--success-color) !important;
+    color: var(--success-color) !important;
+    font-weight: 600 !important;
+    border-radius: 25px !important;
+    padding: 0.4rem 1rem !important;
+    font-size: 0.85rem !important;
+}
+
+/* Form controls with visible borders */
+.form-control {
+    border: 2px solid #dee2e6 !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+    background: white !important;
+}
+
+.form-control:focus {
+    border-color: var(--secondary-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25) !important;
+    background: white !important;
+}
+
+.form-control:hover {
+    border-color: #adb5bd !important;
+}
+
+/* Enhanced buttons */
+.btn {
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    padding: 0.75rem 1.5rem !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    font-size: 0.9rem !important;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--secondary-color), #5dade2) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3) !important;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4) !important;
+}
+
+.btn-outline-success {
+    border: 2px solid var(--success-color) !important;
+    color: var(--success-color) !important;
+    background: transparent !important;
+}
+
+.btn-outline-success:hover {
+    background: var(--success-color) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3) !important;
+}
+
+.btn-outline-danger {
+    border: 2px solid var(--accent-color) !important;
+    color: var(--accent-color) !important;
+    background: transparent !important;
+}
+
+.btn-outline-danger:hover {
+    background: var(--accent-color) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3) !important;
+}
+
+/* Beautiful alerts */
+.alert {
+    border: none !important;
+    border-radius: 15px !important;
+    padding: 1rem 1.5rem !important;
+    font-weight: 500 !important;
+    box-shadow: var(--shadow) !important;
+}
+
+.alert-info {
+    background: linear-gradient(45deg, #d1ecf1, #bee5eb) !important;
+    color: #0c5460 !important;
+    border-left: 4px solid var(--secondary-color) !important;
+}
+
+/* Loading animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.book-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.book-card:nth-child(1) { animation-delay: 0.1s; }
+.book-card:nth-child(2) { animation-delay: 0.2s; }
+.book-card:nth-child(3) { animation-delay: 0.3s; }
+.book-card:nth-child(4) { animation-delay: 0.4s; }
+.book-card:nth-child(5) { animation-delay: 0.5s; }
+.book-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-section {
+        padding: 2rem 0;
+        margin: -1.5rem -10px 1rem -10px;
+    }
+    
+    .book-card {
+        margin-bottom: 2rem !important;
+    }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}

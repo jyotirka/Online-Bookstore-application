@@ -1,0 +1,13 @@
+/* Custom Font for The Book Haven Name Only */
+
+/* Import Google Font - Elegant serif font for bookstore name */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+/* Style only the bookstore name */
+.navbar-brand {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
+}
+
+
