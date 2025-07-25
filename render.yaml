@@ -1,24 +1,18 @@
 services:
   - type: web
-    name: bookstore-app
+    name: online-bookstore
     env: python
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
-    startCommand: gunicorn store.wsgi:application
+      python manage.py migrate
+    startCommand: gunicorn myproject.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: store.settings
+        value: myproject.settings
+      - key: PYTHON_VERSION
+        value: 3.10
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
-        value: "False"
-      - fromDatabase:
-          name: bookstore-db
-          property: connectionString
-          key: DATABASE_URL
-
-databases:
-  - name: bookstore-db
-    databaseName: bookstore
-    user: bookstore_user
+        value: False
