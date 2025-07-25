@@ -5,11 +5,10 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
-    startCommand: gunicorn myproject.wsgi:application
-
+    startCommand: gunicorn store.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: myproject.settings
+        value: store.settings
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
