@@ -13,3 +13,9 @@ services:
         fromDatabase:
           name: bookstore_db
           property: connectionString
+
+databases:
+  - name: bookstore-db
+    databaseName: bookstore
+    user: bookstore_user
+
