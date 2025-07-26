@@ -14,8 +14,8 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-3">
-                            {% if item.book.cover_image %}
-                                <img src="{{ item.book.cover_image.url }}" class="img-fluid rounded-start h-100" alt="{{ item.book.title }}" style="object-fit: cover;">
+                            {% if item.book.cover_image_filename %}
+                                <img src="{{ item.book.cover_image_filename.url }}" class="img-fluid rounded-start h-100" alt="{{ item.book.title }}" style="object-fit: cover;">
                             {% else %}
                                 <div class="bg-light d-flex align-items-center justify-content-center h-100">
                                     <span class="text-muted">No Image</span>

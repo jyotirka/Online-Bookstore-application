@@ -16,8 +16,8 @@
                     {% for item in cart_items %}
                     <div class="row mb-3 pb-3 border-bottom">
                         <div class="col-md-2">
-                            {% if item.book.cover_image %}
-                                <img src="{{ item.book.cover_image.url }}" class="img-fluid rounded" alt="{{ item.book.title }}" style="max-height: 80px;">
+                            {% if item.book.cover_image_filename %}
+                                <img src="{{ item.book.cover_image_filename.url }}" class="img-fluid rounded" alt="{{ item.book.title }}" style="max-height: 80px;">
                             {% else %}
                                 <div class="bg-light d-flex align-items-center justify-content-center" style="height: 80px;">
                                     <span class="text-muted small">No Image</span>

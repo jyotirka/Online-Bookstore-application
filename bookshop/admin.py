@@ -35,6 +35,9 @@ class WishlistAdmin(admin.ModelAdmin):
     list_filter = ['added_at']
     search_fields = ['user__username', 'book__title']
 
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'price', 'stock')    
+
 admin.site.register(Book)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem)
