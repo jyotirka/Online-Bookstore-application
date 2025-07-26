@@ -61,12 +61,8 @@
         {% for book in books %}
         <div class="col-md-4 mb-4">
             <div class="card book-card h-100">
-                {% load static %}
-                {% if item.book.cover_image_filename %}
-                    <img src="{% static 'book_images/' %}{{ item.book.cover_image_filename }}" 
-                         class="img-fluid rounded" 
-                         alt="{{ item.book.title }}" 
-                         style="max-height: 80px;">
+                {% if book.cover_image %}
+                    <img src="{{ book.cover_image.url }}" class="card-img-top" style="height: 300px; object-fit: cover;" alt="{{ book.title }}">
                 {% else %}
                     <div class="card-img-top d-flex align-items-center justify-content-center bg-light" style="height: 300px;">
                         <i class="fas fa-book fa-3x text-muted"></i>

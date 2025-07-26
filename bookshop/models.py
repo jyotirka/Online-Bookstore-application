@@ -7,11 +7,7 @@ class Book(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     stock = models.PositiveIntegerField()
-    cover_image_filename = models.CharField(
-        max_length=100, 
-        blank=True, 
-        help_text="Ikigai.jpg ,metamorphosis.jpg,never_lie.jpeg,Savarkar.jpeg,the_girl_in_room_105.jpg,the_housemaid.jpg,the_magic_of_the_lost_temple.jpg,the_stationary_shop.jpg,YOLO.jpg "
-    )
+    cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
 
     def __str__(self):
         return self.title
