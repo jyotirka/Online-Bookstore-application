@@ -3,4 +3,5 @@ psycopg2-binary
 Pillow
 gunicorn
 dj-database-url
+python-dotenv
 whitenoise
